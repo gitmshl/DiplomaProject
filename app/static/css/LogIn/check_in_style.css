@@ -1,0 +1,205 @@
+body{
+	/*text-align:center;*/
+	margin:0;
+	min-height: 510px;
+    min-width: 1024px;
+	font-family:blogger, Arial, serif;
+	background: url(../../images/LogIn/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#log_in_body{
+	background: url(../../images/LogIn/log_in_bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+header{
+	width:100%;
+	height:52px;
+}
+
+.header{
+	background-image:url(../../images/LogIn/header_bg.png);
+	background-position:fixed;
+	width:100%;
+	height:52px;
+}
+
+#log_in{
+	float:right;
+	margin-top:5px;
+	margin-right:5px;
+}
+
+.wrapper_big{
+	clear:both;
+	margin-top:100px;
+	width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    align-items: center;
+    align-content: center; 
+    justify-content: center; 
+    overflow: auto; 
+}
+
+.wrapper{
+	/*margin:auto auto;*/
+	width:341px;
+	height:502px;	
+	margin:auto;
+}
+
+.wrapper_log_in{
+	/*margin:auto auto;*/
+	width:341px;
+	height:300;	
+	margin:auto;
+}
+
+.box_bkg{
+	margin:auto auto;
+	width:341px;
+	height:502px;
+	background-image:url(../../images/LogIn/box_bkg.png);
+}
+
+.box_bkg_log_in{
+	margin:auto auto;
+	padding-top:2px;
+	width:341px;
+	height:300px;
+	background-image:url(../../images/LogIn/box_bkg_log_in.png);
+	background-repeat:no-repeat;
+}
+
+.icon{
+	height:46px;
+	width:46px;
+	background-image:url(../../images/LogIn/icon.png);
+	margin-top:20px;
+	margin-left:36px;
+	float:left;
+}
+
+.register_now{
+	height:100px;
+	width:200px;
+	background-image:url(../../images/LogIn/Register_Now.png);
+	margin-top:10px;
+	margin-left:100px;
+	background-position-y:20px;
+	background-repeat:no-repeat;
+}
+
+.log_in_icon{
+	height:46px;
+	width:46px;
+	background-image:url(../../images/LogIn/log_in_icon.png);
+	background-repeat:no-repeat;
+	margin-top:32px;
+	margin-left:38px;
+	float:left;
+}
+
+.log_in_text{
+	height:90px;
+	width:200px;
+	background-image:url(../../images/LogIn/Log_in_text.png);
+	margin-top:10px;
+	margin-left:100px;
+	background-position-y:20px;
+	background-repeat:no-repeat;
+}
+
+#first_field{
+	margin:10px auto 10px;
+}
+
+.field{
+	margin:20px auto 10px;
+	background:url(../../images/LogIn/field.png) no-repeat 50% 50%;
+	width:275px;
+	height:46px;
+}
+
+.username_set_icon{
+	font-size:28px;
+	height:46px;
+	background-image:url(../../images/LogIn/user_icon.png);
+	background-repeat:no-repeat;
+	/*background-position-x:15px;
+	background-position-y:5px;*/	 
+	background-position:15px 10px;
+}
+
+.password_set_icon{
+	font-size:28px;
+	height:46px;
+	background-image:url(../../images/LogIn/password_icon.png);
+	background-repeat:no-repeat;
+	/*background-position-x:15px;
+	background-position-y:5px;*/
+	background-position:15px 10px;
+}
+
+
+
+input[type="text"]{
+	vertical-align:middle;
+	font-size:24px;
+	height:41px;
+	width:223px;
+	padding-left:52px;
+	/*outline: none;*/
+	border:none;
+	background:none;
+}
+
+input[type="password"]{
+	vertical-align:middle;
+	font-size:24px;
+	height:41px;
+	width:223px;
+	padding-left:52px;
+	/*outline: none;*/
+	border:none;
+	background:none;
+}
+
+input[type="password"]:focus,input[type="text"]:focus{
+	outline: none;
+	border-radius:6px;
+	border: 1px solid #A60719;
+	border-width:2px 0 0 0;
+}
+
+input[type="image"]:focus{
+	outline: none;
+	border-radius:6px;
+	border: 1px solid #A60719;
+	border-width:1px 0 0 0;
+}
+
+.color-text::-webkit-input-placeholder {
+	color:#CAB4B4;
+}
+
+.color-text{ 
+font-family:blogger, Arial, serif;
+color:#FFFFFF;
+font-family:blogger, Arial, serif;
+}
+
+#submit{
+	margin-left:183px;
+	margin-top:6px;
+}

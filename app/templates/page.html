@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <title>Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/SPA/page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/SPA/fonts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/SPA/rubik/rubik.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/SPA/roboto_vk_font/roboto_vk_font.css') }}">
+    
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Sender.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/consts.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Geo.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/SST.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Timer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/UC.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/PH_Page.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Painter_Page.js') }}"></script>
+    
+    
+</head>
+<body id="body" style="display: block;">
+<header>
+    <div class="header">
+        <div class="subheader">
+            <div class="logo"></div>
+            <div class="search_block">
+                <form action="">
+                    <div class="search_field">
+                        <input type="text" id="search_input" name="Global_Search_Line" class="placeholder_style" placeholder="Search...">
+                        <input type="image" id="search_button" name = "Global_Search_Button" src="{{ url_for('static', filename='images/SPA/search_button.png') }}" alt="Search">
+                    </div>
+                </form>
+            </div>
+            <div class="right_column">
+                <div class="signOut_block">
+                    <form action="">
+                        <div class="signOut_a">
+                            <a class="right_top" href="" id='signout' onclick="UC.logout(); return false;">Sign out</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="options_block">
+                    <form action="">
+                        <div class="options_a">
+                            <a class="right_top" href="" onclick="UC.option(); return false;">Options</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="clear"></div>
+<div class="wrapper">
+    <div class="leftSidebar">
+        <ul class="left_sidebar_ul">
+            <li>
+                <div class="my_page" onclick="UC.myPage(); return false;">
+                    <a href="" onclick="return false;">
+                        My page
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="my_friends">
+                    <a href="..\Page\Friends\MFS.php" onclick="return false;">
+                        My friends
+                    </a>
+                </div>
+            </li>
+
+
+            <li>
+                <div class="my_messages" onclick="UC.myDialogs(); return false;">
+                    <a href="#" id="link_to_dialogs" onclick="return false;">
+                        My dialogs
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    {% if friend_btn_status == 3  or friend_btn_status == -1%}
+        <span id='showMap' style='display: none;'>
+            1
+        </span>
+    {% endif %}
+
+    <span id='span_page_id' style="display: none;">{{ page_id }}</span>
+
+    <div class="middleContent">
+        <div class = 'div_profile'>
+            <span style='display: none;' id='profile_image_name'>{{avatar}}</span>
+            <img src="" class='profile_image'>
+            <div class='div_profile_information'>
+                <div id = 'page_profile_name'><p style='font-size:larger;'><b> {{name}} </b></p></div>
+                <div id='page_login'>
+                    <span><b>LOGIN: {{ login }}</b></span>
+                </div>
+                <div id='page_time'>
+                    <span><b>Online</b></span>
+                </div>
+                {% if friend_btn_status == 3  or friend_btn_status == -1%}
+                    <div id='Coordinates'>
+                        <b>Широта: <span id='lat'></span> °</b> <br />
+                        <b>Долгота: <span id='lon'></span> °</b> <br />
+                    </div>
+                {% endif %}
+                {% if friend_btn_status != -1 %}
+                    {% if friend_btn_status == 0 %}
+                        <div id="friend_button">
+                            <button type ="button" id="friend" onclick="UC.friend_button();" class="btn btn-primary">Добавить в друзья</button>
+                        </div>
+                    {% elif friend_btn_status == 1 %}
+                        <div id="friend_button">
+                            <button type ="button" id="friend" onclick="UC.friend_button();" class="btn btn-primary">Отклонить запрос</button>
+                        </div>
+                    {% elif friend_btn_status == 2 %}
+                        <div id="friend_button">
+                            <button type ="button" id="friend" onclick="UC.friend_button();" class="btn btn-primary">Принять запрос</button>
+                        </div>
+                    {% elif friend_btn_status == 3 %}
+                        <div id="friend_button">
+                            <button type ="button" id="friend" onclick="UC.friend_button();" class="btn btn-primary">Удалить из друзей</button>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+
+{% if friend_btn_status == 3 or friend_btn_status == -1 %}
+<div id='MapButtons' style='display: none'>
+    <select name="pets" id="pet-select" class="custom-select mr-sm-1" style="width:48%">
+        <option value="">--Период--</option>
+        <option value="dog">Последнее</option>
+        <option value="cat">1 день</option>
+        <option value="hamster">1 неделя</option>
+        <option value="parrot">1 месяц</option>
+    </select>
+        <button type='button' class="btn btn-primary">Start</button>
+        <button type='button' class="btn btn-primary">Stop</button>
+</div>
+
+<div id='MapContent'></div>
+{% endif %}
+
+</body>
+
+    <script src="{{ url_for('static', filename='js/page.js') }}"></script>
+
+</html>

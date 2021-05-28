@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <title>Options</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/SPA/option.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/SPA/fonts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/SPA/rubik/rubik.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/SPA/roboto_vk_font/roboto_vk_font.css') }}">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Sender.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/consts.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Geo.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/SST.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Timer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/UC.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/PH_Page.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Painter_Page.js') }}"></script>
+    
+</head>
+<body id="body" style="display: block;">
+
+<script>
+    function deleteZone(c_id){
+        console.log('This one' + c_id);
+
+        $.ajax({
+            url: '/deleteconstraint?c_id='+c_id,
+            type: 'POST',
+            success: function (response) {
+                if (response == "ok"){
+                    location.href = '/options';
+                }
+                else{
+                    alert('Возникла ошибка на сервере!');
+                    return false;
+                }
+            }
+        });
+
+    }
+</script>
+
+<header>
+    <div class="header">
+        <div class="subheader">
+            <div class="logo"></div>
+            <div class="search_block">
+                <form action="">
+                    <div class="search_field">
+                        <input type="text" id="search_input" name="Global_Search_Line" class="placeholder_style" placeholder="Search...">
+                        <input type="image" id="search_button" name = "Global_Search_Button" src="{{ url_for('static', filename='images/SPA/search_button.png') }}" alt="Search">
+                    </div>
+                </form>
+            </div>
+            <div class="right_column">
+                <div class="signOut_block">
+                    <form action="">
+                        <div class="signOut_a">
+                            <a class="right_top" href="" id='signout' onclick="UC.logout(); return false;">Sign out</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="options_block">
+                    <form action="">
+                        <div class="options_a">
+                            <a class="right_top" href="" onclick="UC.option(); return false;">Options</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="clear"></div>
+
+<div class="wrapper">
+    <div class="leftSidebar">
+        <ul class="left_sidebar_ul">
+            <li>
+                <div class="my_page" >
+                    <a href="" onclick="UC.myPage(); return false;">
+                        My page
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="my_friends">
+                    <a href="..\Page\Friends\MFS.php" onclick="return false;">
+                        My friends
+                    </a>
+                </div>
+            </li>
+
+
+            <li>
+                <div class="my_messages" onclick="UC.myDialogs(); return false;">
+                    <a href="#" id="link_to_dialogs" onclick="return false;">
+                        My dialogs
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="middle_content">
+        <b>Установить внешний ресурс</b>
+        <br>
+        <form>
+            <div class="form-row">
+              <div class="col-md-4">
+                <input type="text" id='lat' class="form-control" placeholder="Link">
+              </div>
+              <div class="col">
+                <button type="submit" id='ok1' class="btn btn-primary">Ok</button>
+              </div>
+            </div>
+          </form>
+        <b>Добавить "слепые зоны"</b>
+        <br>
+        <form>
+            <div class="form-row">
+              <div class="col-md-2">
+                <input type="text" id='lat' class="form-control" placeholder="Latitude">
+              </div>
+              <div class="col-md-2">
+                <input type="text" id ='long' class="form-control" placeholder="Longitude">
+              </div>
+              <div class="col-md-2">
+                <input type="text" id='radius' class="form-control" placeholder="Radius">
+              </div>
+              <div class="col">
+                <button type="submit" id='ok' class="btn btn-primary">Ok</button>
+              </div>
+            </div>
+          </form>
+            <br>         
+          <div id="Zones">
+            <p><b>Слепые зоны</b></p>
+            {% for zone in zones %}
+                <div id='1' class="form-row">
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" placeholder="{{ zone.lat }}°" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" placeholder="{{ zone.long }}°" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" placeholder="{{ zone.radius }}" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" id='delete' class="btn btn-primary" onclick="deleteZone({{ zone.c_id }}); return false;">Удалить</button>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+          </div>
+    </div>
+   
+</div>
+
+</body>
+
+    <script src="{{ url_for('static', filename='js/option.js') }}"></script>
+
+</html>
